@@ -7,10 +7,11 @@ public class PlayerMoving : MonoBehaviour
     public float speed;
 
     private int angle;
+    private SpriteRenderer sr;
 
     void Start()
     {
-
+        sr = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -33,6 +34,22 @@ public class PlayerMoving : MonoBehaviour
             angle = 0;
         }
 
+
+        if (angle == -1)
+        {
+            if (Time.timeScale != 0f)
+            {
+                sr.flipX = true;
+            }
+        }
+
+        if (angle == 1)
+        {
+            if (Time.timeScale != 0f)
+            {
+                sr.flipX = false;
+            }
+        }
     }
 
     void FixedUpdate()
