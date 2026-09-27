@@ -1,0 +1,40 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class PauseManager : MonoBehaviour
+{
+    public GameObject panel;
+
+    private Animator anim;
+    private bool isPaused;
+
+    void Start()
+    {
+        anim = panel.GetComponent<Animator>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            ChangePause();
+        }
+    }
+
+    public void ChangePause()
+    {
+        isPaused = !isPaused;
+
+        if (isPaused)
+        {
+            anim.SetBool("pause", true);
+            Time.timeScale = 0.0f;
+        }
+        else
+        {
+            Time.timeScale = 1.0f;
+            anim.SetBool("pause", false);
+        }
+    }
+}
